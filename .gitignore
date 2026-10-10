@@ -1,0 +1,6 @@
+*.log
+backup-*/
+tools/
+*.msi
+*.exe
+styles.before-css-update.css

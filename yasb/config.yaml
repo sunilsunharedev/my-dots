@@ -1,0 +1,303 @@
+# Lavender outline theme, adapted to your screenshot.
+watch_stylesheet: true
+watch_config: true
+debug: false
+update_check: true
+# Uses Windows virtual desktops; no separate window manager required.
+bars:
+  primary-bar:
+    enabled: true
+    screens: ["*"]
+    class_name: "yasb-bar"
+    alignment:
+      position: "top"
+      align: "center"
+    animation:
+      enabled: true
+      duration: 200
+    blur_effect:
+      enabled: true
+      dark_mode: true
+      round_corners: false
+      round_corners_type: "normal"
+      border_color: "None"
+    window_flags:
+      always_on_top: true
+      windows_app_bar: true
+      hide_on_fullscreen: false
+      hide_on_maximized: false
+      auto_hide: false
+    dimensions:
+      width: "100%"
+      height: 34
+    padding:
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+    widgets:
+      left: ["desktops", "active_window"]
+      center: ["mascot"]
+      right: ["wifi", "bluetooth", "volume", "brightness", "battery", "clock", "notifications", "power_menu"]
+widgets:
+  active_window:
+    type: "yasb.active_window.ActiveWindowWidget"
+    options:
+      label: "{win[process][name]}"
+      label_alt: "{win[title]}"
+      label_no_window: ""
+      label_icon: true
+      label_icon_size: 14
+      max_length: 24
+      max_length_ellipsis: "..."
+      monitor_exclusive: true
+  clock:
+    type: "yasb.clock.ClockWidget"
+    options:
+      label: "<span>\uf017</span> {%H:%M}"
+      label_alt: "{%a %d %b}  {%H:%M:%S}"
+      timezones: []
+      callbacks:
+        on_left: "toggle_calendar"
+  power_menu:
+    type: "yasb.power_menu.PowerMenuWidget"
+    options:
+      label: "<span>\uf011</span>"
+      uptime: true
+      blur: false
+      blur_background: true
+      animation_duration: 200
+      button_row: 5
+      buttons:
+        shutdown: ["\uf011", "Rage Quit"]
+        restart: ["\uead2", "Oops, Reboot"]
+        signout: ["\U000f0343", "Dip Out"]
+        hibernate: ["\uf28e", "Bear Mode"]
+        sleep: ["\u23fe", "Nap Time"]
+        cancel: ["", "Nah, Im Good "]
+  cava:
+    type: "yasb.cava.CavaWidget"
+    options:
+      bar_height: 12
+      min_bar_height: 0
+      gradient: 1
+      reverse: 0
+      foreground: "#89b4fa"
+      gradient_color_1: "#74c7ec"
+      gradient_color_2: "#89b4fa"
+      gradient_color_3: "#cba6f7"
+      bars_number: 8
+      bar_spacing: 2
+      bar_width: 4
+      hide_empty: true
+  cpu:
+    type: "yasb.cpu.CpuWidget"
+    options:
+      label: "{info[percent][total]:.0f}%"
+      progress_bar:
+        enabled: true
+        position: "left"
+        size: 17
+        thickness: 3
+        color: "#89dceb"
+        background_color: "#1e1e2e"
+        animation: true
+      update_interval: 2000
+      callbacks:
+        on_right: "toggle_menu"
+        on_left: "toggle_menu"
+      menu:
+        enabled: true
+        show_graph: true
+        show_graph_grid: true
+        graph_history_size: 60
+  glazewm_workspaces:
+    type: "glazewm.workspaces.GlazewmWorkspacesWidget"
+    options:
+      offline_label: "GlazeWM is offline dude"
+      hide_if_offline: true
+      enable_scroll_switching: true
+      reverse_scroll_direction: true
+  glazewm_tiling_direction:
+    type: "glazewm.tiling_direction.GlazewmTilingDirectionWidget"
+    options:
+      horizontal_label: "\ueb56"
+      vertical_label: "\ueb57"
+  memory:
+    type: "yasb.memory.MemoryWidget"
+    options:
+      label: "{virtual_mem_percent}%"
+      update_interval: 5000
+      progress_bar:
+        enabled: true
+        size: 17
+        thickness: 3
+        position: "left"
+        color: "#cba6f7"
+        background_color: "#1e1e2e"
+        animation: true
+      callbacks:
+        on_left: "toggle_menu"
+        on_right: "toggle_menu"
+      memory_thresholds:
+        low: 25
+        medium: 50
+        high: 90
+      menu:
+        enabled: true
+        show_graph: true
+        show_graph_grid: true
+        graph_history_size: 60
+  komorebi_workspaces:
+    type: "komorebi.workspaces.WorkspaceWidget"
+    options:
+      label_offline: "\u23fc Offline"
+      label_workspace_btn: " "
+      label_workspace_active_btn: " "
+      label_workspace_populated_btn: " "
+      label_default_name: "{index}"
+      label_zero_index: false
+      hide_empty_workspaces: false
+      hide_if_offline: true
+  komorebi_active_layout:
+    type: "komorebi.active_layout.ActiveLayoutWidget"
+    options:
+      hide_if_offline: true
+      label: "{icon}"
+      layouts: ["bsp", "columns", "rows", "grid", "vertical_stack", "horizontal_stack", "ultrawide_vertical_stack", "right_main_vertical_stack"]
+      layout_icons:
+        bsp: "BSP"
+        columns: "COLS"
+        rows: "ROWS"
+        grid: "GRID"
+        vertical_stack: "V-STACK"
+        horizontal_stack: "H-STACK"
+        ultrawide_vertical_stack: "W-STACK"
+        right_main_vertical_stack: "RMV-STACK"
+        monocle: "MONOCLE"
+        maximized: "MAX"
+        floating: "FLOATING"
+        paused: "PAUSED"
+      callbacks:
+        on_left: "next_layout"
+        on_middle: "toggle_monocle"
+        on_right: "prev_layout"
+  media:
+    type: "yasb.media.MediaWidget"
+    options:
+      label: "{title}"
+      label_alt: "{title}"
+      separator: " - "
+      hide_empty: true
+      callbacks:
+        on_left: "toggle_media_menu"
+      max_field_size:
+        label: 30
+        label_alt: 30
+      show_thumbnail: false
+      controls_only: false
+      controls_left: true
+      controls_hide: false
+      thumbnail_alpha: 80
+      thumbnail_padding: 8
+      thumbnail_corner_radius: 16
+      icons:
+        prev_track: " "
+        next_track: " "
+        play: "\U000f075b"
+        pause: "\uf001"
+      media_menu:
+        blur: true
+        round_corners: false
+        round_corners_type: "normal"
+        border_color: "system"
+        alignment: "right"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
+        thumbnail_corner_radius: 0
+        thumbnail_size: 96
+        max_title_size: 60
+        max_artist_size: 20
+        show_source: true
+      media_menu_icons:
+        play: "\ue768"
+        pause: "\ue769"
+        prev_track: "\ue892"
+        next_track: "\ue893"
+      scrolling_label:
+        enabled: false
+        update_interval_ms: 33
+        style: "left"
+        separator: " | "
+        label_padding: 0
+        always_scroll: false
+        ease_slope: 20
+        ease_pos: 0.8
+        ease_min: 0.5
+
+  desktops:
+    type: "yasb.windows_desktops.WorkspaceWidget"
+    options:
+      label_workspace_btn: "{index}"
+      label_workspace_active_btn: "{index}"
+
+  mascot:
+    type: "yasb.custom.CustomWidget"
+    options:
+      class_name: "mascot"
+      label: "<span>\uf17a</span>"
+      tooltip: true
+      tooltip_label: "Start menu"
+      callbacks:
+        on_left: "exec start_menu"
+
+  wifi:
+    type: "yasb.wifi.WifiWidget"
+    options:
+      label: "<span>{wifi_icon}</span>"
+      label_alt: "{wifi_name}"
+      ethernet_label: "<span>{wifi_icon}</span>"
+      ethernet_icon: "\uf0ec"
+      wifi_icons: ["\uf1eb", "\uf1eb", "\uf1eb", "\uf1eb", "\uf1eb"]
+      callbacks:
+        on_left: "exec quick_settings"
+        on_right: "toggle_label"
+
+  bluetooth:
+    type: "yasb.bluetooth.BluetoothWidget"
+    options:
+      label: "<span>\uf293</span>"
+      label_alt: "<span>\uf293</span>"
+
+  volume:
+    type: "yasb.volume.VolumeWidget"
+    options:
+      label: "<span>{icon}</span> {level}"
+      scroll_step: 2
+      icons: ["\uf6a9", "\uf026", "\uf027", "\uf027", "\uf028"]
+
+  brightness:
+    type: "yasb.brightness.BrightnessWidget"
+    options:
+      label: "<span>\uf185</span> {percent}%"
+      callbacks:
+        on_left: "toggle_brightness_menu"
+
+  battery:
+    type: "yasb.battery.BatteryWidget"
+    options:
+      label: "<span>{icon}</span> {percent}%"
+      hide_unsupported: true
+      charging_options:
+        blink_charging_icon: false
+
+  notifications:
+    type: "yasb.notifications.NotificationsWidget"
+    options:
+      label: "<span>\uf0f3</span>"
+      label_alt: "{count}"
+      hide_empty: false
+      callbacks:
+        on_left: "exec notification_center"
+        on_right: "toggle_label"
