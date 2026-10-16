@@ -4,3 +4,8 @@ tools/
 *.msi
 *.exe
 styles.before-css-update.css
+
+# Local profile/config backups and generated caches
+*.backup-*
+*.broken-link-*
+ProfileCache/
